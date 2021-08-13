@@ -8,6 +8,8 @@
 
 module load cutadapt/1.18
 
+set -x
+
 ## base dir
 proj_dir=.
 
@@ -24,14 +26,15 @@ mkdir -p $out
 
 echo ${names[${SLURM_ARRAY_TASK_ID}]}
 
-_R1_001.fastq.gz
 
+# run cutadapt
 cutadapt -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \
         -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
         -o $out/${names[${SLURM_ARRAY_TASK_ID}]}_R1_001.cutadapt.fastq.gz \
         -p $out/${names[${SLURM_ARRAY_TASK_ID}]}_R2_001.cutadapt.fastq.gz \
         -m 25 \
         -q 15 \
+        --cores=$SLURM_CPUS_ON_NODE \
         $fastq_dir/${names[${SLURM_ARRAY_TASK_ID}]}_R1_001.fastq.gz \
         $fastq_dir/${names[${SLURM_ARRAY_TASK_ID}]}_R2_001.fastq.gz
 
