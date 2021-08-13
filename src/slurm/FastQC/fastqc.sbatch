@@ -15,7 +15,7 @@ proj_dir=.
 ## input variables
 fastq_dir=${proj_dir}/Fastq/Raw # raw files
 sample_list=../samples_list.txt # sample list
-names=($(cat $sample_list)
+names=($(cat $sample_list))
 
 ## output variables
 fastqc_out=${proj_dir}/QC/FastQC
