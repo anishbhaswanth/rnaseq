@@ -10,7 +10,7 @@ module purge
 module load fastqc/0.11.9
 
 ## base dir
-proj_dir=
+proj_dir=.
 
 ## input variables
 fastq_dir=${proj_dir}/Fastq/Raw # raw files
@@ -26,5 +26,5 @@ mkdir -p $fastqc_out
 echo ${names[${SLURM_ARRAY_TASK_ID}]}
 
 ## run fastqc
-fastqc -o $fastqc_out $fastq_dir/${names[${SLURM_ARRAY_TASK_ID}]}_1.fastq.gz
-fastqc -o $fastqc_out $fastq_dir/${names[${SLURM_ARRAY_TASK_ID}]}_2.fastq.gz
+fastqc -o $fastqc_out $fastq_dir/${names[${SLURM_ARRAY_TASK_ID}]}_R1_001.fastq.gz
+fastqc -o $fastqc_out $fastq_dir/${names[${SLURM_ARRAY_TASK_ID}]}_R2_001.fastq.gz
