@@ -5,18 +5,21 @@
 #SBATCH -t 1-00:00 # D-H:M
 #SBATCH --cpus-per-task=12 # Request that ncpus be allocated per process.
 #SBATCH --mem=60g
-#SBATCH --output=star-%A_%a.out
+#SBATCH --array=0-11 # job array index  
+#SBATCH --output=OUT/star-%A_%a.out
 
 # load modules
 module purge
 module load star/2.7.5a
 
+set -x
+
 ## base dir
 proj_dir=.
 
 ## input variables
-genome_dir=
-fastq_dir=${proj_dir}/Fastq/Raw # raw files
+genome_dir=/bgfs/genomics/refs/refs/Homo_sapiens/Gencode/GRCh38/STAR
+fastq_dir=${proj_dir}/Fastq/Cutadapt # cutadapt files
 
 sample_list=../samples_list.txt # sample list
 names=($(cat $sample_list))
@@ -31,8 +34,8 @@ mkdir -p $out
 ## run STAR mapping
 
 STAR \
-    --readFilesIn ${sample}_R1_001.cutadapt.fastq.gz ${sample}_R2_001.cutadapt.fastq.gz \
-    --outSAMattrRGline $sample \
+    --readFilesIn $fastq_dir/${sample}_R1_001.cutadapt.fastq.gz $fastq_dir/${sample}_R2_001.cutadapt.fastq.gz \
+    --outSAMattrRGline ID:$sample \
     --alignIntronMax 1000000 \
     --alignIntronMin 20 \
     --alignMatesGapMax 1000000 \
