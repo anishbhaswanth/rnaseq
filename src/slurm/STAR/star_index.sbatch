@@ -9,12 +9,17 @@
 
 module load star/2.7.5a
 
-# input variables
+set -x
+
+## input variables
 ref_fa=
 gtf=
+#ref_fa=/bgfs/genomics/refs/refs/Homo_sapiens/Gencode/GRCh38/GRCh38.primary_assembly.genome.fa
+#gtf=/bgfs/genomics/refs/refs/Homo_sapiens/Gencode/GRCh38/gencode.v38.primary_assembly.annotation.gtf
 
-# output variables
+## output variables
 genome_dir=
+#genome_dir=/bgfs/genomics/refs/refs/Homo_sapiens/Gencode/GRCh38/STAR
 
 mkdir -p $genome_dir
 
