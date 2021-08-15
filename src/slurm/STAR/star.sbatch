@@ -18,7 +18,8 @@ set -x
 proj_dir=.
 
 ## input variables
-genome_dir=/bgfs/genomics/refs/refs/Homo_sapiens/Gencode/GRCh38/STAR
+#genome_dir=/bgfs/genomics/refs/refs/Homo_sapiens/Gencode/GRCh38/STAR
+genome_dir=/bgfs/genomics/refs/refs/Mus_musculus/Gencode/GRCm39/STAR
 fastq_dir=${proj_dir}/Fastq/Cutadapt # cutadapt files
 
 sample_list=../samples_list.txt # sample list
