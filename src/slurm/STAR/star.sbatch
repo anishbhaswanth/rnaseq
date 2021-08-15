@@ -10,6 +10,8 @@
 
 # load modules
 module purge
+module load gcc/8.2.0
+module load samtools/1.9
 module load star/2.7.5a
 
 set -x
@@ -66,3 +68,6 @@ STAR \
     --readFilesCommand zcat \
     --runThreadN $SLURM_CPUS_ON_NODE \
     --twopassMode Basic
+
+## generate bam index
+samtools index $out/${sample}Aligned.sortedByCoord.out.bam
